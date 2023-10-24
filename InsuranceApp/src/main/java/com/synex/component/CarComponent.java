@@ -12,8 +12,16 @@ public class CarComponent {
 	
 	public JsonNode saveCar(JsonNode node) {
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<JsonNode> res = restTemplate.postForEntity("localhost:8383/saveCar", node, JsonNode.class);
+		ResponseEntity<JsonNode> res = restTemplate.postForEntity("http://localhost:8383/saveCar", node, JsonNode.class);
 		
+		return res.getBody();
+		
+	}
+
+	public JsonNode getCarById(Long id) {
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<JsonNode> res = restTemplate.getForEntity("http://localhost:8383/getCarById/" + id, JsonNode.class);
+		System.out.println(res);
 		return res.getBody();
 		
 	}

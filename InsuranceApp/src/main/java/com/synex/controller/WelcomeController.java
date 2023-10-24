@@ -67,4 +67,31 @@ public class WelcomeController {
 		return "CarForm";
 	}
 	
+	@RequestMapping(value = "/planForm",method = RequestMethod.GET)
+	public String planForm(Principal principal, Model model) {
+		System.out.println(principal.getName());
+		model.addAttribute("principal", principal.getName());
+
+//		List<JsonNode> node = bookingComponent.findAll();
+		
+//		model.addAttribute("bookings", node);
+//		System.out.println(node);
+		
+		
+		return "PlanForm";
+	}
+	@RequestMapping(value = "/policyForm",method = RequestMethod.GET)
+	public String policyForm(Principal principal, Model model) {
+		System.out.println(principal.getName());
+		model.addAttribute("principal", principal.getName());
+
+//		List<JsonNode> node = bookingComponent.findAll();
+		
+//		model.addAttribute("bookings", node);
+//		System.out.println(node);
+		
+		
+		return "PolicyForm";
+	}
+	
 }

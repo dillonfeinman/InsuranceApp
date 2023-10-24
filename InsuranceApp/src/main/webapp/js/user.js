@@ -47,6 +47,8 @@ $(document).ready(function(){
 				dataType: 'json',
 				success: function(result){
 					console.log(result)
+					window.location.href = "http://localhost:8282/carForm?userId=" + result.id;
+
 				},
 				error: function(e) {
 					console.log(e)

@@ -17,4 +17,12 @@ public class InsuredComponent {
 		return res.getBody();
 		
 	}
+
+	public JsonNode getInsuredById(Long id) {
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<JsonNode> res = restTemplate.getForEntity("http://localhost:8383/getInsuredById/" + id, JsonNode.class);
+		System.out.println(res);
+		return res.getBody();
+		
+	}
 }

@@ -8,7 +8,7 @@
  String userId = request.getParameter("userId");
  String planId = request.getParameter("planId");
  String carId = request.getParameter("carId");
-
+ String success = request.getParameter("success");
  %>
 <head>
 <meta charset="ISO-8859-1">
@@ -33,6 +33,12 @@
 		</div>
 		<br/>
 
+		<div class= "container" >
+			<h2>Password:</h2>
+			<input type="password" id="password">
+		</div>
+		<br/>
+
 		<div class= "container" id="carContainer">
 			<h2>Car:</h2>
 		</div>
@@ -44,8 +50,12 @@
 
 		<div class = "container" id="totalContainer">
 			<h2>Total cost:</h2>
-
 		</div>
+
+		<c:if test="<%=success%>">
+			<h1>Payment Successful</h1>
+		</c:if>
+
 		<div class="container">
 			<button id="confirmPolicy">Confirm</button>
 		</div>

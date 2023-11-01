@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Policy {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long policyNumber;
+	Long policyNumber;
 	
 	//User information
 	@OneToOne
@@ -32,11 +32,16 @@ public class Policy {
 	Car car;
 	
 	//Plan information
-	@OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "policy", cascade = CascadeType.MERGE)
     private List<Plan> plans;
+	
+	private String status = "AWAITING";
 	
 	private LocalDate startDate;
 	private LocalDate endDate;
+	
+	
+	
 	public long getPolicyNumber() {
 		return policyNumber;
 	}
@@ -72,6 +77,12 @@ public class Policy {
 	}
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

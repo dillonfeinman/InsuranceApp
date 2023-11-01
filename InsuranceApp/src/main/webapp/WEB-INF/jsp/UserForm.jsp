@@ -89,6 +89,14 @@ String zipcode = request.getParameter("zipcode");
                 <label for="industry">Industry</label>
                 <input type="text" class="form-control" id="industry">
             </div>
+            <div class="form-group">
+                <form method="post" action="/saveDocument" enctype="multipart/form-data">
+                    <label>Document Upload</label>
+                    <input type="file" id="file">
+                </form>
+                
+            </div>
+
             <button type="submit" class="btn btn-primary" id="userSubmit">Submit</button>
         </form>
     </div>

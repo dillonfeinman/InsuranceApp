@@ -34,8 +34,8 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(result){
 				console.log(result)
+				//window.location.href = "http://localhost:8282/paymentForm?userId=" + userId + "&carId="+carId + "&planId="+result.id;
 				window.location.href = "http://localhost:8282/policyForm?userId=" + userId + "&carId="+carId + "&planId="+result.id;
-
 				
 	
 			},

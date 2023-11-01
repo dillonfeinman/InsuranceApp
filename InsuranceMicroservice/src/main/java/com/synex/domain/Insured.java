@@ -34,6 +34,11 @@ public class Insured {
 	String employmentStatus;
 	
 	String industry;
+	
+	@OneToOne(cascade = CascadeType.MERGE)
+	Document document;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -123,8 +128,18 @@ public class Insured {
 		this.industry = industry;
 	}
 
+
+	public Document getDocument() {
+		return document;
+	}
+
+	public void setDocument(Document document) {
+		this.document = document;
+	}
+
 	public Insured(Long id, Address address, String gender, String firstName, String lastName, LocalDate dob,
-			String email, long mobile, String educationLevel, String employmentStatus, String industry) {
+			String email, long mobile, String educationLevel, String employmentStatus, String industry,
+			Document document) {
 		super();
 		this.id = id;
 		this.address = address;
@@ -137,6 +152,7 @@ public class Insured {
 		this.educationLevel = educationLevel;
 		this.employmentStatus = employmentStatus;
 		this.industry = industry;
+		this.document = document;
 	}
 
 	public Insured() {

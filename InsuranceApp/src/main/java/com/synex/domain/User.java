@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +26,8 @@ public class User {
 	
 	//@NotEmpty
 	private String userPassword;
+	
+	private Long policyNumber;
 	
 	private String email;
 	
@@ -76,6 +79,26 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public long getMobile() {
+		return mobile;
+	}
+
+
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
+	}
+
+
+	public Long getPolicyNumber() {
+		return policyNumber;
+	}
+
+
+	public void setPolicyNumber(Long policyNumber) {
+		this.policyNumber = policyNumber;
 	}
 
 

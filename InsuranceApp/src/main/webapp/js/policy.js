@@ -23,6 +23,8 @@ $(document).ready(function(){
 				
 				plan = result;
 				
+				console.log(plan)
+				
 				$.ajax({
 					type:"GET",
 					contentType:"application/json",
@@ -31,8 +33,28 @@ $(document).ready(function(){
 					dataType: 'json',
 					success: function(result){
 						console.log("result",result)
+												
+						
+												
+						var x = (result.document.driverLicense);
+						
+						
+			
+						
+						//var u8 = x.split(",")
+						
+						console.log(x)
+												
+						
+						var dataUrl = 'data:image/jpeg;base64,' + x;				
+						
+						
+						console.log(dataUrl)
+						
 						$("#userContainer").append("<h2>"+result.firstName + " " + result.lastName + "</h2>" + "<h2>" + result.email + "</h2>" + 
-						"<h2>" + result.mobile + "</h2>")
+							"<h2>" + result.mobile + "</h2>" + 
+							"<img src='" + dataUrl + "'/>"
+						);
 						
 						switch(result.educationLevel){
 							case "High school diploma/GED":
@@ -65,6 +87,10 @@ $(document).ready(function(){
 							}
 						})
 						
+					
+
+						
+						
 			
 					},
 					error: function(e) {
@@ -80,24 +106,52 @@ $(document).ready(function(){
 		})
 		$("#confirmPolicy").on('click', {}, function(e){
 			if(insured && car && plan) {
-				$.ajax({
+				console.log(insured, car, plan)
+				window.location.href = "http://localhost:8282/paymentForm?userId=" + userId + "&carId="+carId + "&planId="+planId + "&amount="+plan.premium				//window.location.href = "http://localhost:8282/paymentForm?userId=" + userId + "&carId="+carId + "&planId="+result.id;
+
+
+				/*$.ajax({
 					type:"POST",
 					contentType:"application/json",
 					url: "http://localhost:8282/savePolicy",
-					data: {
+					data: JSON.stringify({
 						insured: insured,
 						car: car,
 						plans: [plan]
-					},
+					}),
 					dataType: 'json',
 					success: function(result){
 						console.log(result)
+						console.log($("#password").val())
+						$.ajax({
+							type:"POST",
+							contentType:"application/json",
+							url: "http://localhost:8282/signup",
+							data: JSON.stringify({
+								email: insured.email,
+								userName: result.policyNumber,
+								userPassword: $("#password").val(),
+								policyNumber: result.policyNumber,
+								mobile: 0,
+								
+							}),
+							dataType: 'json',
+							success: function(result){
+								console.log(result)
+								window.location.href = "http://localhost:8282/login?userName="+result.policyNumber
+
+			
+							},
+							error: function(e) {
+								console.log(e)
+							}
+						})
 	
 					},
 					error: function(e) {
 						console.log(e)
 					}
-				})
+				})*/
 			}
 		})
 		

@@ -1,13 +1,18 @@
 package com.synex.domain;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -31,9 +36,10 @@ public class Claim {
     
     @ManyToOne
     private Policy policy;
-    
+    @Lob
     private byte[] policeReport;
-    private byte[][] photos;
+    @ElementCollection
+    private Collection<ClaimImage> photos;
 	public Long getId() {
 		return id;
 	}
@@ -56,7 +62,7 @@ public class Claim {
 		return status;
 	}
 	public void setStatus(String status) {
-		this.status = status;
+		this.status = status;//
 	}
 	public double getRepairPrice() {
 		return repairPrice;
@@ -82,14 +88,14 @@ public class Claim {
 	public void setPoliceReport(byte[] policeReport) {
 		this.policeReport = policeReport;
 	}
-	public byte[][] getPhotos() {
+	public Collection<ClaimImage> getPhotos() {
 		return photos;
 	}
-	public void setPhotos(byte[][] photos) {
+	public void setPhotos( Collection<ClaimImage> photos) {
 		this.photos = photos;
 	}
 	public Claim(Long id, LocalDate accidentDate, String description, String status, double repairPrice, Car car,
-			Policy policy, byte[] policeReport, byte[][] photos) {
+			Policy policy, byte[] policeReport,  Collection<ClaimImage> photos) {
 		super();
 		this.id = id;
 		this.accidentDate = accidentDate;

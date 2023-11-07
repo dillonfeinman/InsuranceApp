@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -32,13 +33,12 @@ public class Policy {
 	Car car;
 	
 	//Plan information
-	@OneToMany(mappedBy = "policy", cascade = CascadeType.MERGE)
+	@OneToMany
     private List<Plan> plans;
 	
 	private String status = "AWAITING";
 	
-	private LocalDate startDate;
-	private LocalDate endDate;
+	
 	
 	
 	
@@ -66,18 +66,7 @@ public class Policy {
 	public void setPlans(List<Plan> plans) {
 		this.plans = plans;
 	}
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
+	
 	public String getStatus() {
 		return status;
 	}

@@ -23,4 +23,8 @@ public class ClaimService {
 		var optClaim = claimRepository.findById(claimNumber);
 		return optClaim.isPresent()?optClaim.get():null;
 	}
+	public List<Claim> findClaimsByPolicyNumber(Long policyNumber) {
+		// TODO Auto-generated method stub
+		return claimRepository.findAllByPolicyPolicyNumberLike(policyNumber);
+	}
 }

@@ -20,23 +20,24 @@
 <body>
 	<div class="container">
 		<input type="hidden" id="userId" value=<%=userId%>>
+		<form>
 		<h2>About your vehicle</h2>
 		<div class="form-group">
 		<b>VIN</b>
-		<input type="text" id="vin"/>
+		<input type="text" class="form-control" id="vin"/>
 	</div>
 		<div class="form-group">
 		<b>Year</b>
 	
-		<input type="number" id="year"/>
+		<input type="number"class="form-control" id="year"/>
 	</div>
 		<div class="form-group">
 		<b>Make</b>
-		<input type="text" id="make"/>
+		<input type="text" class="form-control" id="make"/>
 	</div>
 		<div class="form-group">
 		<b>Model</b>
-		<input type="text" id="model"/>
+		<input type="text" class="form-control" id="model"/>
 	</div>
 		
 		<div class="form-group">
@@ -71,6 +72,7 @@
 
 		<input type="button" id="carSubmit" value="Submit"/>
 		
+	</form>
 
 	</div>
 

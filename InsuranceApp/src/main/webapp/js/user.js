@@ -18,35 +18,7 @@ $(document).ready(function(){
         let fileUpload = $("#file")[0]; // Get the file input element
 		
 		
-		// Assuming you have an array of bytes (e.g., byteArray) representing the image data
 		
-		var chunkSize = 1024; // Set an appropriate chunk size
-		
-		// Function to convert byte array to base64 data URL in chunks
-		function convertToDataUrl(byteArray) {
-		  var index = 0;
-		  var length = byteArray.length;
-		  var dataUrl = 'data:image/jpeg;base64,';
-		
-		  function processChunk() {
-		    var chunk = byteArray.slice(index, index + chunkSize);
-		    dataUrl += btoa(String.fromCharCode.apply(null, chunk));
-		    index += chunkSize;
-		
-		    if (index < length) {
-		      setTimeout(processChunk, 0); // Process next chunk asynchronously
-		    } else {
-		      // Create an image element and set its source to the data URL
-		      var image = $('<img>');
-		      image.attr('src', dataUrl);
-		
-		      // Append the image element to a container (e.g., a div with id "imageContainer")
-		      $('#imageContainer').append(image);
-		    }
-		  }
-		
-		  processChunk();
-		}
 		
 		console.log(fileUpload)
 		
@@ -62,7 +34,6 @@ $(document).ready(function(){
 				reader.onload = function(event) {
 					const fileContent = event.target.result;
 					const byteArray = new Uint8Array(fileContent);
-
 					
 					var b64encoded = btoa(byteArray.reduce(function(data,byte) {
 						return data + String.fromCharCode(byte);

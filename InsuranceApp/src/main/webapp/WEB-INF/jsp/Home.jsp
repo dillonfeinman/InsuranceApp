@@ -33,23 +33,71 @@
 		-webkit-appearance: none;
 		appearance: none;
 	}
+	.quote {
+		border-radius: 10px;
+		border: 1px solid black;
+	}
 </style>
 
 </head>
 <body>
-	<div class="container">
+	
+
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container">
+					<a class="navbar-brand" href="home">Dillon Auto Insurance</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="home">Home</a>
+							</li>
+							
+							<c:if test="${role.equals('ADMIN')}">
+								<li class="nav-item">
+									<a class="nav-link" href="Admin">Admin</a>
+								</li>
+							</c:if>
+							<c:if test="${principal != null && !role.equals('ADMIN')}">
+								<li class="nav-item">
+									<a class="nav-link" href="viewClaims">Claims</a>
+								</li>
+							</c:if>
+							<c:if test="${principal == null}">
+								<li class="nav-item">
+									<a class="nav-link" href="login">Login</a>
+								</li>
+							</c:if>
+							<c:if test="${principal != null}">
+								<li class="nav-item">
+									<a class="nav-link" href="login?logout">Logout</a>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+
+
 	<form onsubmit="return false;">
+		<section class="hero text-center">
 		<div class="text-center">
-			<h1 class="mt-5">Welcome to Dillon's Auto Insurance!</h1>
-			
+			<h1 class="mt-5">Dillon's Auto Insurance</h1>
+			<h2 class="mt-2">Welcome, Policy Number: ${principal}</h2>
 		</div>
+	</section>
 
 		<c:if test="${principal == null}">
 			
-			<div class="form-group mt-4">
+			<div class="quote form-group mt-4">
 
 
-				<div class="row justify-content-center">
+				<div class=" row justify-content-center">
 					<h2>Get a free quote today!</h2>
 				</div>
 
@@ -83,9 +131,32 @@
 
 		</c:if>
 
-		<c:if test="${principal != null}">
-			<a href="/claim">Create a claim.</a>
-			<a href="/review">Review policy.</a>
+		
+
+		<c:if test="${principal != null && !role.equals('ADMIN')}">
+		
+			<div class="form-group mt-4">
+				<div class="quote row justify-content-center">
+					<a href="/claim">Create a claim.</a>
+				</div>
+				
+				<div class="quote row justify-content-center">
+					<a href="/viewClaims">View open claims.</a>
+				</div>
+				<div class="quote row justify-content-center">
+					<a href="/review">Review policy.</a>
+					
+				</div>
+				
+			</div>
+		</c:if>
+
+		<c:if test="${principal != null && role.equals('ADMIN')}">
+			<div class="form-group mt-4">
+				<div class="quote row justify-content-center">
+					<a href="/admin">Admin Homepage.</a>
+				</div>
+			</div>
 		</c:if>
 
 		

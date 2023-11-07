@@ -12,4 +12,6 @@ import com.synex.domain.Policy;
 public interface ClaimRepository extends JpaRepository<Claim, Long>{
 	List<Claim> findAllByStatusLike(String status);
 
+	List<Claim> findAllByPolicyPolicyNumberLike(Long policyNumber);
+
 }

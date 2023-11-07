@@ -25,66 +25,62 @@
 
 </head>
 <body>
+
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="/home">Dillon Auto Insurance</a>
+				<a class="navbar-brand" href="home">Dillon Auto Insurance</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="/home">Home</a>
+							<a class="nav-link" href="home">Home</a>
 						</li>
 						
-						<c:if test="${role.equals('ADMIN')}">
-							<li class="nav-item">
-								<a class="nav-link" href="/Admin">Admin</a>
-							</li>
-						</c:if>
+
 						<c:if test="${principal != null && !role.equals('ADMIN')}">
 							<li class="nav-item">
-								<a class="nav-link" href="/viewClaims">Claims</a>
+								<a class="nav-link" href="viewClaims">Claims</a>
 							</li>
 						</c:if>
-						<c:if test="${principal == null}">
-							<li class="nav-item">
-								<a class="nav-link" href="/login">Login</a>
-							</li>
-						</c:if>
-						<c:if test="${principal != null}">
-							<li class="nav-item">
-								<a class="nav-link" href="/login?logout">Logout</a>
-							</li>
-						</c:if>
+					
+						<li class="nav-item">
+							<a class="nav-link" href="login?logout">Logout</a>
+						</li>
+						
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
+
 	<div class="container">
 	
-		<div class="row">
-			<div class="col text-center">
-				<h2>Accept/Deny Policies</h2>
-			</div>
-			<div class="col text-center">
-				<a href="/admin/claims"><h2>Accept/Deny Claims</h2></a>
-				
-			</div>
-		</div>
 
 		<div class="text-center">
-			<h1 class="mt-5">Admin: Dillon's Auto Insurance</h1>
-			<h1 class="mt-5">Policy Accepter/Rejecter</h1>
-		
-			
+			<h1 class="mt-5">Dillon's Auto Insurance</h1>
+			<h1 class="mt-5">Open Claims</h1>
 
-			<table>
-				<tr><th>Policy Number</th><th>Insured</th><th>Car</th><th>Action</th></tr>
-				<c:forEach items="${policies}" var="p">
-					<tr><td>${p.policyNumber}</td><td>${p.insured.firstName} ${p.insured.lastName}</td><td>${p.car.vin} - ${p.car.model} ${p.car.make}, ${p.car.year}</td><td><a href="http://localhost:8282/acceptPolicy?policyNumber=${p.policyNumber}">Accept</a> | <a href="http://localhost:8282/rejectPolicy?policyNumber=${p.policyNumber}">Reject</a></td></tr>
+			<table class="table text-center">
+				<tr>
+					<th>Claim ID</th>
+					<th>Policy Number</th>
+					<th>Insured</th>
+					<th>Car</th>
+					<th>Claim Images</th>
+					<th>Status</th>
+				</tr>
+				
+				<c:forEach items="${claims}" var="c">
+					<tr><td>${c.id}</td><td>${c.policy.policyNumber}</td><td> ${c.policy.insured.firstName} ${c.policy.insured.lastName}</td><td>${c.policy.car.vinNumber} - ${c.policy.car.model} ${c.policy.car.make}, ${c.policy.car.year}</td>
+					<td>
+						<c:forEach items="${c.photos}" var="photo">
+							<img width="100px" height="auto" src="data:image/jpeg;base64,${photo.binaryData}" />	
+						</c:forEach>
+					</td>	
+					<td>${c.status}</td></tr>
 				</c:forEach>
 			</table>
 

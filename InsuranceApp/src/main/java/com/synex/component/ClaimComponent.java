@@ -12,8 +12,10 @@ public class ClaimComponent {
 	
 	public JsonNode createClaim(JsonNode node) {
 		RestTemplate restTemplate = new RestTemplate();
+		System.out.println(node);
+
 		ResponseEntity<JsonNode> res = restTemplate.postForEntity("http://localhost:8383/createClaim", node, JsonNode.class);
-		
+		System.out.println(res.getBody());
 		return res.getBody();
 		
 	}
@@ -34,6 +36,12 @@ public class ClaimComponent {
 	public JsonNode rejectClaim(Long claimNumber) {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<JsonNode> res = restTemplate.postForEntity("http://localhost:8383/rejectClaim", claimNumber, JsonNode.class);
+		return res.getBody();
+	}
+	
+	public JsonNode getClaimsByPolicyNumber(Long policyNumber) {
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<JsonNode> res = restTemplate.getForEntity("http://localhost:8383/getClaimsByPolicyNumber?pn="+policyNumber, JsonNode.class);
 		return res.getBody();
 	}
 }

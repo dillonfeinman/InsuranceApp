@@ -45,6 +45,7 @@ public class SecurityConfig {
 		.apply(MyCustomDsl.customDsl()).flag(true)
 //		.and().authorizeRequests().requestMatchers("/home/**", "").permitAll()
 		.and().authorizeRequests().requestMatchers("/home/*", "").hasAnyAuthority("USER", "ADMIN")
+		.and().authorizeRequests().requestMatchers("/admin/**", "").hasAnyAuthority("ADMIN")
 		.and().formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll();
 		return http.build();
 	}

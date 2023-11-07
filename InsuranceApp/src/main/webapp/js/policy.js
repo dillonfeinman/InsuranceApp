@@ -2,6 +2,7 @@ $(document).ready(function(){
 	let userId = $("#userId").val();
 	let planId = $("#planId").val();
 	let carId = $("#carId").val();
+	let paid = $("#paid").val();
 	
 	let total = 0
 	
@@ -105,12 +106,15 @@ $(document).ready(function(){
 			}
 		})
 		$("#confirmPolicy").on('click', {}, function(e){
-			if(insured && car && plan) {
+			
+			if(insured && car && plan && paid == ("false")) {
 				console.log(insured, car, plan)
 				window.location.href = "http://localhost:8282/paymentForm?userId=" + userId + "&carId="+carId + "&planId="+planId + "&amount="+plan.premium				//window.location.href = "http://localhost:8282/paymentForm?userId=" + userId + "&carId="+carId + "&planId="+result.id;
 
 
-				/*$.ajax({
+				
+			} else if(insured && car && plan && paid == ("true")) {
+				$.ajax({
 					type:"POST",
 					contentType:"application/json",
 					url: "http://localhost:8282/savePolicy",
@@ -151,7 +155,7 @@ $(document).ready(function(){
 					error: function(e) {
 						console.log(e)
 					}
-				})*/
+				})
 			}
 		})
 		

@@ -18,6 +18,44 @@
 <link rel="stylesheet" type="text/css" href="home.css">
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="home">Dillon Auto Insurance</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home">Home</a>
+                        </li>
+                        
+                        <c:if test="${role.equals('ADMIN')}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Admin">Admin</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${principal != null && !role.equals('ADMIN')}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="viewClaims">Claims</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${principal == null}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="login">Login</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${principal != null}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="login?logout">Logout</a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 	<div class="container">
         <h1 class="mt-4">Auto Insurance Claim Form</h1>
         <form id="claimForm" class="mt-4">

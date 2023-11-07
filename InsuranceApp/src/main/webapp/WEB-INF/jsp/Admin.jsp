@@ -29,10 +29,10 @@
 	
 		<div class="row">
 			<div class="col text-center">
-				<a href="/policies"><h2>Accept/Deny Policies</h2></a>
+				<a href="/admin/policies"><h2>Accept/Deny Policies</h2></a>
 			</div>
 			<div class="col text-center">
-				<a href="/claims"><h2>Accept/Deny Claims</h2></a>
+				<a href="/admin/claims"><h2>Accept/Deny Claims</h2></a>
 				
 			</div>
 		</div>
